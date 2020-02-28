@@ -1,0 +1,20 @@
+<div class="friend friend_<%= user.id %>">
+    <div class="friend_item">
+        <% if !user.new_record? %>
+            <span><%= image_tag user.picture.url if user.picture? %></span>
+            <span style="display:inline;"><%= link_to user.username, user_path(user) %></span>
+        <% end %>
+    </div>
+    
+    <div class="friend_request" >
+        <% if user.pending?(current_user)%>
+            <%= form_with url: friendship_path do |f| %>
+                <%= f.hidden_field :user_id, value: user.id %>
+                <%= f.submit "Accept friend request" %>
+            <% end %>
+        <% elsif user.friend?(current_user) %>
+            <span>(Friend!)</span>
+        <% end %>
+    </div>
+    
+</div>

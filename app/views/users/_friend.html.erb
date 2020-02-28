@@ -1,0 +1,8 @@
+<% if current_user.pending?(@user)%>
+    <%= button_tag "Pending request", type: "button", disabled: true %>
+<% elsif current_user.friend?(@user) %>
+    <%= render 'unfriend' %>
+<% else%>
+    <%= render 'add_friend' %>
+<% end %>
+

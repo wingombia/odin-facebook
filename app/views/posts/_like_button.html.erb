@@ -1,0 +1,4 @@
+<%= form_with url: post_likes_path(post) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id  %>
+    <%= f.submit "Like"  %>
+<% end %>

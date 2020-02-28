@@ -1,0 +1,20 @@
+<% if !post.new_record? %>
+<li>
+    <span><%= render post.user %></span>
+    <span class="content"><%= post.content %></span>
+    <div class="likes like_<%= post.id %>">
+        <span class="likes_count"><%= pluralize(post.liked_users.size,"like") + ':' %></span>
+        <span class="liked_user"> <%= render(partial: 'posts/liked_user', collection: post.liked_users) %></span>
+        <span class="liked_button">
+            <% if !post.liked_users.include?(current_user)%>
+                <%= render partial: 'posts/like_button', locals: {post: post} %>
+            <% else%>
+                <%= render partial: 'posts/unlike_button', locals: {post: post} %>
+            <% end %>
+        </span>
+    </div>
+    <% if !single %>
+        <span><%= link_to "View Comments", post %></span>
+    <% end%>
+</li>
+<% end %>

@@ -1,0 +1,94 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+    padding-top: 60px;
+}
+
+section {
+    overflow: auto;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.center {
+    text-align: center;
+    h1 {
+        margin-bottom: 10px;
+    }
+}
+
+#error_explanation {
+    color: red;
+    ul {
+        color: red;
+        margin: 0 0 30px 0;
+    }
+}
+  
+.field_with_errors {
+    @extend .has-error;
+    .form-control {
+        color: $state-danger-text;
+    }
+}
+.friend_request{
+  color: green;
+}
+
+.posts, .comments {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #000000ee;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    //margin-left: 60px;
+    border-bottom: 1px solid #e8e8e8;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .avatar {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  .delete_button{
+    display: inline-block;
+  }
+}
+.comments .content{
+  border-top: 1px solid #e8e8e8;
+}
+.friend {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 10px;
+}
+.liked_button, .friend_request, .friend_item {
+  display: inline-block;
+}
+#profile div{
+  display: inline-block;
+}
+.alert-notice{
+  @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text)
+}
+.alert-alert {
+  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text)
+}
