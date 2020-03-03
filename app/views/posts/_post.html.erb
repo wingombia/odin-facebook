@@ -2,6 +2,7 @@
 <li>
     <span><%= render post.user %></span>
     <span class="content"><%= post.content %></span>
+    <span class="timestamp"><%= print_time_diff(post.created_at) %></span>
     <div class="likes like_<%= post.id %>">
         <span class="likes_count"><%= pluralize(post.liked_users.size,"like") + ':' %></span>
         <span class="liked_user"> <%= render(partial: 'posts/liked_user', collection: post.liked_users) %></span>
@@ -16,5 +17,7 @@
     <% if !single %>
         <span><%= link_to "View Comments", post %></span>
     <% end%>
+
+        
 </li>
 <% end %>

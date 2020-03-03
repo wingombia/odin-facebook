@@ -12,8 +12,11 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id", dependent: :destroy
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+
   mount_uploader :picture, PictureUploader
   validate :picture_size
+
+  after_create :send_mail
   def friend?(user)
     friendships.where(pending: false).find_by(friend_id: user.id) || inverse_friendships.where(pending: false).find_by(user_id: user.id)
   end
@@ -28,10 +31,16 @@ class User < ApplicationRecord
     (pending_count > 0) ? pending_count : false
   end
 
+  def get_timeline
+    Post.where(user_id: friendships.select(:friend_id)).or(Post.where(user_id: inverse_friendships.select(:user_id))).or(Post.where(user_id: id))
+  end
   private
     def picture_size
       if picture.size > 5.megabytes
         errors.add(:picture, "Should be less than 5MB")
       end
+    end
+    def send_mail
+      UserMailer.welcome(self).deliver_now
     end
 end

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
     def index
-        @posts = current_user.posts.paginate(page: params[:page])
+        @posts = current_user.get_timeline.paginate(page: params[:page])
         @post_new = current_user.posts.build
     end
     def show

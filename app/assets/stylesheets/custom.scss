@@ -61,7 +61,7 @@ textarea {
   .timestamp {
     color: $gray-light;
     display: block;
-    margin-left: 60px;
+    //margin-left: 60px;
   }
   .avatar {
     float: left;
@@ -71,6 +71,10 @@ textarea {
 
   .delete_button{
     display: inline-block;
+  }
+
+  .time_diff{
+    display: block;
   }
 }
 .comments .content{
