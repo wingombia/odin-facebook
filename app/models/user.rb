@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
   validate :picture_size
-
+  validates :username, presence: true, uniqueness: true, allow_blank: false
   after_create :send_mail
   def friend?(user)
     friendships.where(pending: false).find_by(friend_id: user.id) || inverse_friendships.where(pending: false).find_by(user_id: user.id)
@@ -34,6 +34,12 @@ class User < ApplicationRecord
   def get_timeline
     Post.where(user_id: friendships.select(:friend_id)).or(Post.where(user_id: inverse_friendships.select(:user_id))).or(Post.where(user_id: id))
   end
+
+  def generate_token
+    payload = { id: id, exp: 60.days.from_now.to_i}
+    token = JWT.encode(payload, Rails.application.secrets.secret_key_base)
+  end
+
   private
     def picture_size
       if picture.size > 5.megabytes
