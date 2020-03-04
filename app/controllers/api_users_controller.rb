@@ -1,6 +1,6 @@
 class ApiUsersController < ApiController
 
-    before_action :authenticate_user!, except: [:show_profile]
+    before_action :authenticate_user!, except: [:show_profile, :get_posts]
     def show
     end
     def update
@@ -38,6 +38,21 @@ class ApiUsersController < ApiController
         end
     end
 
+    def get_timeline
+        @posts = current_user.get_timeline
+        get_limited_posts(current_user)
+        render :get_posts
+    end
+
+    def get_posts
+        @user = User.find_by_email(params[:email])
+        if !@user
+            render_error_response_friendship({})
+        else
+            @posts = @user.posts
+            get_limited_posts(@user)
+        end 
+    end
     private
         def user_params
             params.require(:user).permit(:email, :password, :username, :remote_picture_url)
@@ -49,4 +64,10 @@ class ApiUsersController < ApiController
             end
             render json: error_hash , status: :unprocessable_entity
         end
+
+        def get_limited_posts(user)
+            limit = params[:limit]
+            @posts = @posts.limit(limit) if limit
+        end
+
 end

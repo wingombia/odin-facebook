@@ -33,8 +33,7 @@ class User < ApplicationRecord
   def accept_request(user)
     friendship = inverse_friendships.find_by(user_id: user.id)
     if friendship
-      friendship.pending = false
-      friendship.save || false
+      friendship.update(pending: false) || false
     else
       false
     end
@@ -50,7 +49,9 @@ class User < ApplicationRecord
   end
 
   def get_timeline
-    Post.where(user_id: friendships.select(:friend_id)).or(Post.where(user_id: inverse_friendships.select(:user_id))).or(Post.where(user_id: id))
+    Post.where(        user_id: friendships.where(pending: false).select(:friend_id))
+        .or(Post.where(user_id: inverse_friendships.where(pending: false).select(:user_id)))
+        .or(Post.where(user_id: id))
   end
 
   def generate_token

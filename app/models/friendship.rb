@@ -5,9 +5,13 @@ class Friendship < ApplicationRecord
 
     private
         def validate_friendship_unique
-            if Friendship.where(user_id: friend_id, friend_id: user_id).exists? ||
-                Friendship.where(user_id: user_id, friend_id: friend_id).exists?
+            if new_record? && friendship_exist?(self)
                 errors.add(:friendship, "already exist or pending request")
             end
+        end
+
+        def friendship_exist?(friendship)
+            Friendship.where(user_id: friend_id, friend_id: user_id).exists? ||
+                Friendship.where(user_id: user_id, friend_id: friend_id).exists?
         end
 end
