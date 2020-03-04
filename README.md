@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A Rails backend basic facebook clone made by Phan Bao Minh, HCMUS feature: 
+  + API using JWT gem for encryption
+  
+  + Authentication using Devise gem
+  
+  + Image upload using CarrierWave gem 
+  
+  + Users, Likes, Friends, Posts functionalities
