@@ -15,7 +15,6 @@ class User < ApplicationRecord
 
   mount_uploader :picture, PictureUploader
   validate :picture_size
-  validates :username, presence: true, uniqueness: true, allow_blank: false
   after_create :send_mail
   def friend?(user)
     friendships.where(pending: false).find_by(friend_id: user.id) || inverse_friendships.where(pending: false).find_by(user_id: user.id)
@@ -24,6 +23,20 @@ class User < ApplicationRecord
   def pending?(user)
     friend = friendships.find_by(friend_id: user.id)
     friend && friend.pending
+  end
+
+  def befriend(user)
+    friendships.create(friend_id: user.id, pending: true)
+  end
+
+  def accept_request(user)
+    friendship = inverse_friendships.find_by(user_id: user.id)
+    friendship.pending = false
+    friendship.save
+  end
+  def unfriend(user)
+    friendship = friend?(user)
+    friendship.delete if friendship
   end
 
   def pending_request?

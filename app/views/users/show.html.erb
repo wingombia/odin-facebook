@@ -13,16 +13,8 @@
 <div class="row">
     <div class="col-md-4">
         <section>
-            <%= render partial: @user %> 
+            <%= render partial: @user, locals: {is_post: false} %> 
         </section>
-        
-
-        
-        <div id='friend_form'>
-            <% if current_user != @user && !@user.pending?(current_user)%>
-                <span> <%= render 'friend' %></span>
-            <% end %>
-        </div>
         
     </div>
 

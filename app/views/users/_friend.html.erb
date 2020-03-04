@@ -1,8 +1,10 @@
-<% if current_user.pending?(@user)%>
+<% if current_user.pending?(user)%>
     <%= button_tag "Pending request", type: "button", disabled: true %>
-<% elsif current_user.friend?(@user) %>
-    <%= render 'unfriend' %>
+<% elsif current_user.friend?(user) %>
+    <%= render partial: 'unfriend', locals: {user: user} %>
+<% elsif user.pending?(current_user)%>
+    <%= render partial: 'accept_friend', locals: {user: user} %>
 <% else%>
-    <%= render 'add_friend' %>
+    <%= render partial: 'add_friend', locals: {user: user} %>
 <% end %>
 

@@ -34,9 +34,6 @@ textarea {
         color: $state-danger-text;
     }
 }
-.friend_request{
-  color: green;
-}
 
 .posts, .comments {
   list-style: none;
@@ -83,6 +80,10 @@ textarea {
 .friend {
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 10px;
+  #friend_status{
+    color: lightslategray;
+    display: inline-block;
+  }
 }
 .liked_button, .friend_request, .friend_item {
   display: inline-block;

@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     get  'user'       , to: 'api_users#show'  , as: 'api_show_user' 
     put  'user'       , to: 'api_users#update', as: 'api_update_user'
     scope :profile, default: { format: :json } do
-      get ':username'            , to: 'api_user#show_profile', as: 'api_show_profile'
-      post ':username/befriend'  , to: 'api_user#befriend'    , as: 'api_befriend'
-      delete ':username/unfriend', to: 'api_user#unfriend'    , as: 'api_unfriend'
+      get ':email'            , to: 'api_user#show_profile', as: 'api_show_profile'
+      post ':email/befriend'  , to: 'api_user#befriend'    , as: 'api_befriend'
+      delete ':email/unfriend', to: 'api_user#unfriend'    , as: 'api_unfriend'
     end 
   end
   root 'posts#index'

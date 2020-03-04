@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
     protect_from_forgery with: :null_session
     before_action :authenticate_user
-    before_action :authenticate_user!
+    
     private
         def authenticate_user
             if request.headers['Authorization'].present?

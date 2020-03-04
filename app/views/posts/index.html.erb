@@ -8,7 +8,7 @@
         <% end %>
     </div>
     <div class="col-md-3">
-        <%= render current_user %>
+        <%= render partial: current_user, locals: {is_post: false} %>
         <span>
             <%= form_with model: @post_new, url: posts_path, local: true do |f| %>
                 <%= render 'shared/error', object: f.object %>

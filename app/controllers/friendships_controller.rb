@@ -3,12 +3,9 @@ class FriendshipsController < ApplicationController
         @pending = params[:pending]
         @user = User.find(params[:user_id])
         if @pending
-            current_user.friendships.create(friend_id: @user.id, pending: true)
+            current_user.befriend(@user)
         else
-            @friendship = current_user.inverse_friendships.find_by(user_id: @user.id)
-            @friendship.pending = false
-            @friendship.save
-            
+            current_user.accept_request(@user)
         end 
         respond_to do |format|
             format.html { redirect_to users_path }
@@ -17,7 +14,7 @@ class FriendshipsController < ApplicationController
     end
     def destroy
         @user = User.find(params[:user_id])
-        current_user.friend?(@user).delete
+        current_user.unfriend(@user)
         respond_to do |format|
             format.html { rendirect_to users_path }
             format.js
