@@ -26,17 +26,22 @@ class User < ApplicationRecord
   end
 
   def befriend(user)
-    friendships.create(friend_id: user.id, pending: true)
+    friendship = friendships.build(friend_id: user.id, pending: true)
+    friendship.save || false
   end
 
   def accept_request(user)
     friendship = inverse_friendships.find_by(user_id: user.id)
-    friendship.pending = false
-    friendship.save
+    if friendship
+      friendship.pending = false
+      friendship.save || false
+    else
+      false
+    end
   end
   def unfriend(user)
     friendship = friend?(user)
-    friendship.delete if friendship
+    friendship && friendship.delete
   end
 
   def pending_request?

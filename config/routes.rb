@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     post 'users'      , to: 'api_users#create', as: 'api_register'
     get  'user'       , to: 'api_users#show'  , as: 'api_show_user' 
     put  'user'       , to: 'api_users#update', as: 'api_update_user'
-    scope :profile, default: { format: :json } do
-      get ':email'            , to: 'api_user#show_profile', as: 'api_show_profile'
-      post ':email/befriend'  , to: 'api_user#befriend'    , as: 'api_befriend'
-      delete ':email/unfriend', to: 'api_user#unfriend'    , as: 'api_unfriend'
+    scope :profiles, default: { format: :json } do
+      get ':email'            , to: 'api_users#show_profile', as: 'api_show_profile'
+      post ':email/befriend'  , to: 'api_users#befriend'    , as: 'api_befriend'
+      delete ':email/unfriend', to: 'api_users#unfriend'    , as: 'api_unfriend'
     end 
   end
   root 'posts#index'
