@@ -2,25 +2,28 @@ class CommentsController < ApplicationController
     def create
         @post = Post.find(params[:post_id])
         @post.comments.create(comment_params)
-        redirect_to post_path(@post)
+        responds("Comment Posted");
     end
     def destroy
         comment = Comment.find(params[:id])
         @comments = comment.post.comments;
         comment.delete
-       
-        respond_to do |format|
-            format.html do
-                flash[:success] = "Comment Deleted!"
-                redirect_to request.refferer 
-            end
-            format.js {flash.now[:success] = "Comment Deleted!"}
-        end
+        responds("Comment Deleted!");
+        
     end
     private
-     def comment_params
-        param = params.require(:comment).permit(:content)
-        param[:user_id] = @post.user.id
-        param
-     end
+        def comment_params
+            param = params.require(:comment).permit(:content)
+            param[:user_id] = @post.user.id
+            param
+        end
+        def responds(mesg)
+            respond_to do |format|
+                format.html do
+                    flash[:success] = mesg
+                    redirect_to request.referrer
+                end
+                format.js {flash.now[:success] = mesg}
+            end
+        end
 end

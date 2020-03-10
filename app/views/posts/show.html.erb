@@ -4,11 +4,12 @@
 <% if current_user == @post.user %>
     <span><%= link_to "Delete", post_path(@post), method: :delete %></span>
 <% end %>
-<span> 
-    <%= render partial: 'comments/comment_form', locals: {post: @post} %>
-</span>
+
 <h2>Comment Section:</h2>
-<% if @comments.any?%>
+<span id="comment_form"> 
+            <%= render partial: 'comments/comment_form', locals: {post: @post} %>
+</span>
+ <% if @comments.any?%>
     <ol class="comments">
         <%= render @comments %>
     </ol>
