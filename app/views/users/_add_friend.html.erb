@@ -1,5 +1,5 @@
 <%= form_with url: friendship_path do |f|  %>
-    <%= f.hidden_field :user_id, value: user.id %>
+    <%= f.hidden_field :user_id, value: user.id, id: "hidden_user_#{user.id}" %>
     <%= f.hidden_field :pending, value: true %>
     <%= f.submit "Add friend" %>
 <% end%>

@@ -1,2 +1,2 @@
-$(".friend_<%= @user.id %> #friend_form").html("<%= escape_javascript(render(partial: 'users/add_friend', locals: {user: @user})) %>");
-$(".friend_<%= @user.id %> #friend_status").html("");
+$(".user_<%= @user.id %> #friend_form").html("<%= escape_javascript(render(partial: 'users/add_friend', locals: {user: @user})) %>");
+$(".user_<%= @user.id %> #friend_status").html("");

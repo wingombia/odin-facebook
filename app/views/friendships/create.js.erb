@@ -1,9 +1,9 @@
 <% if @pending %>
-    $(".friend_<%= @user.id %> #friend_form").html("<%= escape_javascript(button_tag("Pending Request", type: "button", disabled: true)) %>");
+    $(".user_<%= @user.id %> #friend_form").html("<%= escape_javascript(button_tag("Pending Request", type: "button", disabled: true)) %>");
 <% else  %>
     
-    $(".friend_<%= @user.id %> #friend_status").html("(Friend)!");
-    $(".friend_<%= @user.id %> #friend_status").css('color','lightslategray');
-    $(".friend_<%= @user.id %> #friend_form").html("<%= escape_javascript(render(partial: 'users/unfriend',locals: {user: @user})) %>");
+    $(".user_<%= @user.id %> #friend_status").html("(Friend)!");
+    $(".user_<%= @user.id %> #friend_status").css('color','lightslategray');
+    $(".user_<%= @user.id %> #friend_form").html("<%= escape_javascript(render(partial: 'users/unfriend',locals: {user: @user})) %>");
     $("#user_header").html(" <%= escape_javascript(render 'layouts/user_header') %>");
 <% end %>

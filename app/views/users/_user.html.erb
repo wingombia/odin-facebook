@@ -1,5 +1,5 @@
-<div class="friend friend_<%= user.id %>">
-    <div class="friend_item">
+<div class="user user_<%= user.id %>">
+    <div class="user_item">
         <% if !user.new_record? %>
             <span><%= image_tag user.picture ? user.picture.url : user.picture.thumb.default_url   %></span>
             <span style="display:inline;"><%= link_to user.username, user_path(user) %></span>

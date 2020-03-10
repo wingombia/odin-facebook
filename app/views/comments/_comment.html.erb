@@ -1,6 +1,6 @@
 <li>
     <% if !comment.new_record? %>
-        <span class="user"><%= link_to comment.user.username, comment.user %></span>
+        <span class="author"><%= link_to comment.user.username, comment.user %></span>
         <span class="delete_button">
             <% if comment.user == current_user%>
                 <span><%=  link_to "Delete", post_comment_path(comment.post,comment), class: "btn btn-primary", method: :delete, data: {confirm: "Are you sure?"}%></span>
