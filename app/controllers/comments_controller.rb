@@ -6,9 +6,16 @@ class CommentsController < ApplicationController
     end
     def destroy
         comment = Comment.find(params[:id])
+        @comments = comment.post.comments;
         comment.delete
-        flash[:success] = "Comment deleted!"
-        redirect_to post_path(Post.find(params[:post_id]))
+       
+        respond_to do |format|
+            format.html do
+                flash[:success] = "Comment Deleted!"
+                redirect_to request.refferer 
+            end
+            format.js {flash.now[:success] = "Comment Deleted!"}
+        end
     end
     private
      def comment_params

@@ -1,4 +1,6 @@
-<%= render partial: @post, locals: {single: true} %>
+<div class="posts">
+    <%= render partial: @post, locals: {single: true} %>
+</div>
 <% if current_user == @post.user %>
     <span><%= link_to "Delete", post_path(@post), method: :delete %></span>
 <% end %>
