@@ -3,16 +3,7 @@
     <span><%= link_to "Delete", post_path(@post), method: :delete %></span>
 <% end %>
 <span> 
-    <%= form_with model: @comment, url: post_comments_path(@post), local: true  do |f|%>
-
-        <%= render 'shared/error', object: f.object %>
-        <div class="field">
-            <%= f.text_area :content, placeholder: "Compose new comment..." %>
-        </div>
-        <p>
-            <%= f.submit "Save comment" %>
-        </p>
-    <% end %>
+    <%= render partial: 'comments/comment_form', locals: {post: @post} %>
 </span>
 <h2>Comment Section:</h2>
 <% if @comments.any?%>

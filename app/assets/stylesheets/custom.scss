@@ -55,6 +55,10 @@ textarea {
       padding: 5px 0;
     }
   }
+  .comments {
+    display: none;
+  }
+  
   .timestamp {
     color: $gray-light;
     display: block;

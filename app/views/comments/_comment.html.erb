@@ -7,7 +7,7 @@
             <% end %>
         </span>
         
-        <span class="avatar"><%= image_tag comment.user.picture.url if comment.user.picture? %></span>
+        <span class="avatar"><%= image_tag comment.user.picture.thumb.url if comment.user.picture? %></span>
         <span class="content"><%= comment.content %></span>
         
         

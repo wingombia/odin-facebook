@@ -1,0 +1,21 @@
+(function(){
+    let c = $("#post_<%=@post.id %> .comments");
+    let b = $("#post_<%=@post.id %> #comment_button");
+    c.toggleClass("js_visible");
+    
+        if (c.hasClass("js_visible")){
+            <% if @comments.any? %>
+                c.html("<%= escape_javascript(render(@comments)) %>");
+            <% else %>
+                c.html("No Comments!")
+            <% end  %>
+            b.val("Hide Comments");
+            c.slideDown();
+        } else {
+            c.slideUp();
+            b.val("View Comments");
+        }
+    
+        
+    
+})();

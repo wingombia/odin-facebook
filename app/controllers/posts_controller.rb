@@ -8,6 +8,10 @@ class PostsController < ApplicationController
         @post = current_user.posts.find(params[:id])
         @comment = @post.comments.build
         @comments = @post.comments.paginate(page: params[:page])
+        respond_to do |format|
+            format.html
+            format.js
+        end
     end
     def create
         post = current_user.posts.build(post_params)
