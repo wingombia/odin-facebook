@@ -17,8 +17,12 @@
     <% if !single %>
 
         <span><%= link_to "View Post", post %></span>
-        <%= button_to 'View Comment', post_path(post.id), remote: true, method: :get, id: "comment_button" %>
-        <div class="comments"></div>
+        <%= button_tag 'View Comment', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
+        <div class="comments_section">
+            <div class="add_comment_button"></div>
+            <div class="comment_form"></div>
+            <div class="comments"></div>
+        </div>
     <% end%>
 
         

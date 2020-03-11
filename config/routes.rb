@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, except: [:index, :show, :new]
     resource :likes, only: [:create, :destroy]
+    collection do
+      get 'show_comment_form'
+    end
   end
 
   resources :users, only: [:index, :show]

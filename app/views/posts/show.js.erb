@@ -1,18 +1,22 @@
+window.currentPostIndex = <%= @post.id %>;
 (function(){
+    let cs = $("#post_<%= @post.id %> .comments_section");
     let c = $("#post_<%=@post.id %> .comments");
-    let b = $("#post_<%=@post.id %> #comment_button");
-    c.toggleClass("js_visible");
+    let a = $("#post_<%=@post.id %> .add_comment_button");
+    let b = $("#post_<%=@post.id %> .comment_button");
+    cs.toggleClass("js_visible");
     
-        if (c.hasClass("js_visible")){
+        if (cs.hasClass("js_visible")){
+            a.html("<%= j(button_tag("Add Comment", type: "button")) %>");
             <% if @comments.any? %>
                 c.html("<%= escape_javascript(render(@comments)) %>");
             <% else %>
                 c.html("No Comments!")
             <% end  %>
             b.val("Hide Comments");
-            c.slideDown();
+            cs.slideDown();
         } else {
-            c.slideUp();
+            cs.slideUp();
             b.val("View Comments");
         }
     

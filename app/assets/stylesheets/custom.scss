@@ -55,10 +55,6 @@ textarea {
       padding: 5px 0;
     }
   }
-  .comments {
-    display: none;
-  }
-  
   .timestamp {
     color: $gray-light;
     display: block;
@@ -81,6 +77,10 @@ textarea {
 .comments .content{
   border-top: 1px solid #e8e8e8;
 }
+.comments_section{
+  display: none;
+}
+
 .user {
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 10px;

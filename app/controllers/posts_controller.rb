@@ -28,6 +28,19 @@ class PostsController < ApplicationController
         flash[:success] = "Post deleted!"
         redirect_to root_url
     end
+
+    def show_comment_form
+
+        if params[:form] == "true"
+            render(json: {
+                data: render_to_string(partial: 'comments/comment_form', locals: {post: Post.find(params[:id])})
+            })
+        else
+            render(json: {
+                data: render_to_string(Post.find(params[:id]).comments)
+            })
+        end
+    end
     private
         def post_params
             params.require(:post).permit(:content)
