@@ -1,3 +1,3 @@
 $("#post_<%= @post.id %> .likes_count").html("<%= pluralize(@post.liked_users.size,"like") + ':' %>");
 $("#post_<%= @post.id %> .liked_user").html(" <%= escape_javascript(render(partial: 'posts/liked_user', collection: @post.liked_users)) %>");
-$("#post_<%= @post.id %> .liked_button").html("<%= escape_javascript(render(partial: 'posts/unlike_button', locals: {post: @post})) %>");
+$("#post_<%= @post.id %> .like_button").html("<%= escape_javascript(render(partial: 'posts/unlike_button', locals: {post: @post})) %>");

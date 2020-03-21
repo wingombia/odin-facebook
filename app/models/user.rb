@@ -59,6 +59,10 @@ class User < ApplicationRecord
     token = JWT.encode(payload, Rails.application.secrets.secret_key_base)
   end
 
+  def get_avatar_url(version = nil)
+    !version ? picture.url : picture.send(version).url
+  end
+
   private
     def picture_size
       if picture.size > 5.megabytes

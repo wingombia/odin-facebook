@@ -1,29 +1,31 @@
 <% if !post.new_record? %>
-<li id="post_<%= post.id %>">
-    <span><%= render partial: post.user, locals: {is_post: true} %></span>
+<li id="post_<%= post.id %>" class="item">
+    <div><%= render partial: post.user, locals: {is_post: true, post: post} %></div>
+    
     <span class="content"><%= post.content %></span>
-    <span class="timestamp"><%= print_time_diff(post.created_at) %></span>
-    <div class="likes">
+    
+    <section class="likes">
         <span class="likes_count"><%= pluralize(post.liked_users.size,"like") + ':' %></span>
         <span class="liked_user"> <%= render(partial: 'posts/liked_user', collection: post.liked_users) %></span>
-        <span class="liked_button">
+    </section>
+    <section class="buttons">
+        <span class="like_button">
             <% if !post.liked_users.include?(current_user)%>
                 <%= render partial: 'posts/like_button', locals: {post: post} %>
             <% else%>
                 <%= render partial: 'posts/unlike_button', locals: {post: post} %>
             <% end %>
-        </span>
-    </div>
-    <% if !single %>
-
-        <span><%= link_to "View Post", post %></span>
-        <%= button_tag 'View Comment', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
-        <div class="comments_section">
-            <div class="add_comment_button"></div>
-            <div class="comment_form"></div>
-            <div class="comments"></div>
-        </div>
-    <% end%>
+        </span><!--
+        --><% if !single %><!--
+            --><%= button_tag 'View Comment', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
+            <div class="comments_section">
+                <div class="add_comment_button"></div>
+                <div class="comment_form"></div>
+                <div class="comments"></div>
+            </div>
+        <% end%>
+    </section>
+    
 
         
 </li>

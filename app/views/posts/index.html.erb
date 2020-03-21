@@ -1,15 +1,15 @@
 <div class="row">
-    <div class="col-md-9">
+    <section class="col-md-9">
         <% if @posts.any?%>
             <ol class="posts">
                 <%= render partial: @posts, locals: {single: false} %>
             </ol>
             <%= will_paginate @posts %>
         <% end %>
-    </div>
-    <div class="col-md-3">
+    </section>
+    <aside class="col-md-3">
         <%= render partial: current_user, locals: {is_post: false} %>
-        <span>
+        <section>
             <%= form_with model: @post_new, url: posts_path, local: true do |f| %>
                 <%= render 'shared/error', object: f.object %>
                 <div class="field">
@@ -19,6 +19,6 @@
                     <%= f.submit "Save post" %>
                 </p>
             <% end %>
-        </span>
-    </div>
+        </section>
+    </aside>
 </div>

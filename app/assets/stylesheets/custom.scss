@@ -3,12 +3,19 @@
 
 body {
     padding-top: 60px;
+    background-color: lightgray;
 }
 
 section {
     overflow: auto;
 }
-
+.item {
+  background-color: white;
+  border: 0.1em solid gray; 
+  border-radius: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
 textarea {
     resize: vertical;
 }
@@ -38,10 +45,6 @@ textarea {
 .posts, .comments {
   list-style: none;
   padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #000000ee;
-  }
   .author {
     margin-top: 5em;
     padding-top: 0;
@@ -55,16 +58,19 @@ textarea {
       padding: 5px 0;
     }
   }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    //margin-left: 60px;
+  .likes{
+    border-bottom: 1px solid #e8e8e8;
   }
-  .avatar {
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 5px;
+
+  .buttons{
+    .like_button, .comment_button{
+      display: inline-block;
+      padding: 0.2em;
+      border: 0 none;
+      width: 50%;
+    }
   }
+    
 
   .delete_button{
     display: inline-block;
@@ -81,15 +87,31 @@ textarea {
   display: none;
 }
 
+.avatar {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
 .user {
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 10px;
   #friend_status{
     color: lightslategray;
     display: inline-block;
   }
+  .user_item{
+    width: 100%;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    font-size: 0.9em;
+    //margin-left: 60px;
+  }
+  .view_post {
+    float: right;
+    font-size: 0.9em;
+  }
 }
-.liked_button, .friend_request, .user_item {
+.friend_request, .user_item {
   display: inline-block;
 }
 #profile div{

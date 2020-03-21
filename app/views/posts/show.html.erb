@@ -1,18 +1,20 @@
-<div class="posts">
+<article class="posts">
     <%= render partial: @post, locals: {single: true} %>
-</div>
+</article>
 <% if current_user == @post.user %>
     <span><%= link_to "Delete", post_path(@post), method: :delete %></span>
 <% end %>
 
-<h2>Comment Section:</h2>
-<span id="comment_form"> 
-            <%= render partial: 'comments/comment_form', locals: {post: @post} %>
-</span>
- <% if @comments.any?%>
-    <ol class="comments">
-        <%= render @comments %>
-    </ol>
-    
-    <%= will_paginate @comments %>
-<% end %>
+<section>
+    <h2>Comment Section:</h2>
+    <span class="comment_form"> 
+        <%= render partial: 'comments/comment_form', locals: {post: @post} %>
+    </span>
+
+    <% if @comments.any?%>
+        <ol class="comments">
+            <%= render @comments %>
+        </ol>
+        <%= will_paginate @comments %>
+    <% end %>
+</section>

@@ -1,8 +1,12 @@
 <div class="user user_<%= user.id %>">
     <div class="user_item">
         <% if !user.new_record? %>
-            <span><%= image_tag user.picture ? user.picture.url : user.picture.thumb.default_url   %></span>
-            <span style="display:inline;"><%= link_to user.username, user_path(user) %></span>
+            <span class="avatar"><%= image_tag(user.get_avatar_url(:thumb))   %></span>
+            <%= link_to user.username, user_path(user) %>
+            <% if is_post %>
+                <div class="view_post"><%= link_to "View Post", post %></div>
+                <div class="timestamp"><%= print_time_diff(post.created_at) %></div>
+            <% end %>
             <div id= "friend_status">
                 <% if current_user.friend?(user)%>
                     (Friend)
@@ -21,3 +25,4 @@
         </div>
     <% end %>
 </div>
+
