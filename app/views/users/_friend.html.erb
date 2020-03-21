@@ -1,10 +1,6 @@
-<% if current_user.pending?(user)%>
-    <%= button_tag "Pending request", type: "button", disabled: true %>
-<% elsif current_user.friend?(user) %>
-    <%= render partial: 'unfriend', locals: {user: user} %>
-<% elsif user.pending?(current_user)%>
-    <%= render partial: 'accept_friend', locals: {user: user} %>
-<% else%>
-    <%= render partial: 'add_friend', locals: {user: user} %>
+<% if !/Pending/i.match?(current_user.get_friend_status(user))%>
+    <%= button_tag(current_user.get_friend_status(user), class: "friend_button", data: {user_id: user.id}) %>
+<% else %>
+    <%= button_tag(current_user.get_friend_status(user), class: "friend_button", disabled: true, data: {user_id: user.id}) %>
 <% end %>
 

@@ -63,6 +63,19 @@ class User < ApplicationRecord
     !version ? picture.url : picture.send(version).url
   end
 
+  def get_friend_status(user)
+    if pending?(user)
+        status = "Pending request"
+    elsif friend?(user) 
+        status = "Unfriend"
+    elsif user.pending?(self)
+        status = "Accept request"
+    else
+        status = "Add friend"
+    end 
+    status
+  end
+
   private
     def picture_size
       if picture.size > 5.megabytes

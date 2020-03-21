@@ -23,7 +23,9 @@ section {
     
   }
 }
-.item, .users .user {
+
+
+.item{
   background-color: white;
   border: 0.1em solid e8e8e8; 
   border-radius: 1em;
@@ -133,6 +135,21 @@ textarea {
     font-size: 0.9em;
   }
 }
+
+ul.users{
+  list-style: none;
+}
+li.user{
+  @extend .item;
+  display: inline-block;
+  width: 25%;
+  margin-left: 1em;
+  div {
+    display: block;
+  }
+}
+
+
 .friend_request, .user_item {
   display: inline-block;
 }

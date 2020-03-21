@@ -9,15 +9,21 @@ class FriendshipsController < ApplicationController
         end 
         respond_to do |format|
             format.html { redirect_to users_path }
-            format.js
+            format.json { render(json: {
+                data: current_user.get_friend_status(@user)
+                })
+            }
         end
     end
     def destroy
         @user = User.find(params[:user_id])
         current_user.unfriend(@user)
         respond_to do |format|
-            format.html { rendirect_to users_path }
-            format.js
+            format.html { redirect_to users_path }
+            format.json { render(json: {
+                data: current_user.get_friend_status(@user)
+                })
+            }
         end
     end
 end

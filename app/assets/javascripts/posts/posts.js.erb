@@ -1,3 +1,4 @@
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
 $(document).on("turbolinks:load", () =>{
     if (!(context.has_controller("posts") && context.has_action("index"))) return;
     $(".like_button").on("click", () => {
@@ -38,7 +39,7 @@ $(document).on("turbolinks:load", () =>{
         function ajaxRequest(node, is_form){
             console.log(node);
             $.ajax({
-                url: "posts/show_comment_form",
+                url: "<%= show_comment_form_posts_path %>",
                 type: "get",
                 data: {id: id, form: is_form},
                 success: (data, status, xhr) => {

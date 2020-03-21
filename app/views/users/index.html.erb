@@ -1,6 +1,9 @@
 <h1>All Users</h1>
 <section class="users">
-    <%= render partial: @users, locals: {is_post: false} %>
+<ul class="users">
+    <%= render partial: 'user_li', collection: @users%>
+</ul>
+    
 </section>
 
 <%= will_paginate @users %>
