@@ -2,16 +2,30 @@
 @import "bootstrap";
 
 body {
-    padding-top: 60px;
-    background-color: lightgray;
+    padding-top: 80px;
+    background-color: #e9ebee;
 }
 
 section {
     overflow: auto;
 }
-.item {
+.navbar{
+  background-color: #3b5998;
+  padding: 0.2em;
+  li{
+    border-right: 0.1em solid gray;
+    a{ 
+      color: white;
+      &:hover{
+        background: gray;
+      }
+    }
+    
+  }
+}
+.item, .users .user {
   background-color: white;
-  border: 0.1em solid gray; 
+  border: 0.1em solid e8e8e8; 
   border-radius: 1em;
   margin-bottom: 1em;
   padding: 1em;
@@ -122,8 +136,14 @@ textarea {
 .friend_request, .user_item {
   display: inline-block;
 }
-#profile div{
-  display: inline-block;
+.profile{
+  border-bottom: 1px solid #e8e8e8;
+  h1{
+    vertical-align: middle;
+  }
+  div{
+    display: inline-block;
+  }
 }
 .alert-notice{
   @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text)

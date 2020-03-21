@@ -1,3 +1,6 @@
 <h1>All Users</h1>
-<%= render partial: @users, locals: {is_post: false} %>
+<section class="users">
+    <%= render partial: @users, locals: {is_post: false} %>
+</section>
+
 <%= will_paginate @users %>

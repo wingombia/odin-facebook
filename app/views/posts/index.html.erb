@@ -7,7 +7,7 @@
             <%= will_paginate @posts %>
         <% end %>
     </section>
-    <aside class="col-md-3">
+    <aside class="col-md-3 item">
         <%= render partial: current_user, locals: {is_post: false} %>
         <section>
             <%= form_with model: @post_new, url: posts_path, local: true do |f| %>

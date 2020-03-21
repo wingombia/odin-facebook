@@ -5,7 +5,7 @@
     <span class="content"><%= post.content %></span>
     
     <section class="likes">
-        <%= render partial: 'like_stats', locals: {post: post} %>
+        <%= render partial: 'posts/like_stats', locals: {post: post} %>
     </section>
     <section class="buttons">
         <% if !post.liked_users.include?(current_user)%>
