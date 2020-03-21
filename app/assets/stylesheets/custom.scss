@@ -68,6 +68,14 @@ textarea {
       padding: 0.2em;
       border: 0 none;
       width: 50%;
+      background: white;
+      margin-top: 0.1em;
+    }
+    .like_button:hover, .comment_button:hover{
+      background: $gray-light;
+    }
+    .liked{
+      color: blue;
     }
   }
     

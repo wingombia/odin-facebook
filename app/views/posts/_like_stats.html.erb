@@ -1,0 +1,2 @@
+<span class="likes_count"><%= pluralize(post.liked_users.size,"like") + ':' %></span>
+<span class="liked_user"> <%= render(partial: 'posts/liked_user.html.erb', collection: post.liked_users) %></span>

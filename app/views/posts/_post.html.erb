@@ -5,19 +5,16 @@
     <span class="content"><%= post.content %></span>
     
     <section class="likes">
-        <span class="likes_count"><%= pluralize(post.liked_users.size,"like") + ':' %></span>
-        <span class="liked_user"> <%= render(partial: 'posts/liked_user', collection: post.liked_users) %></span>
+        <%= render partial: 'like_stats', locals: {post: post} %>
     </section>
     <section class="buttons">
-        <span class="like_button">
-            <% if !post.liked_users.include?(current_user)%>
-                <%= render partial: 'posts/like_button', locals: {post: post} %>
-            <% else%>
-                <%= render partial: 'posts/unlike_button', locals: {post: post} %>
-            <% end %>
-        </span><!--
+        <% if !post.liked_users.include?(current_user)%>
+            <%= button_tag "Like", class: "like_button", data: {user_id: current_user.id, id: post.id} %><!--
+        --><% else%>
+            <%= button_tag "Like", class: "like_button liked", data: {user_id: current_user.id, id: post.id} %><!--
+        --><% end %><!--
         --><% if !single %><!--
-            --><%= button_tag 'View Comment', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
+            --><%= button_tag 'View comments', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
             <div class="comments_section">
                 <div class="add_comment_button"></div>
                 <div class="comment_form"></div>
