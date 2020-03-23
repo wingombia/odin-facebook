@@ -1,0 +1,27 @@
+$(document).on("turbolinks:load", () => {
+    $(".friend_button").on("click", () => {
+        let b = $(event.target);
+        let user_id = b.data('user-id');
+        let text = b.text();
+        function ajaxRequest(type, pending){
+            let data = {user_id: user_id}
+            if (pending) data['pending'] = true
+            $.ajax({
+                url: "<%= friendship_path %>",
+                data: data,
+                dataType: "json",   
+                type: type,
+                success: (data, status, xhr) => {
+                    b.text(data.data);
+                }
+            })
+        }
+        if (text.match(/add/i)){
+            ajaxRequest("post", true)
+        } else if (text.match(/accept/i)){
+            ajaxRequest("post")
+        } else if (text.match(/unfriend/i)){
+            ajaxRequest("delete")
+        }
+    })
+})

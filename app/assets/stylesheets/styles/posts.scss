@@ -1,0 +1,49 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.posts, .comments {
+    list-style: none;
+    padding: 0;
+    .author {
+        margin-top: 5em;
+        padding-top: 0;
+    }
+    .content {
+        display: block;
+        //margin-left: 60px;
+        border-bottom: 1px solid #e8e8e8;
+        img {
+        display: block;
+        padding: 5px 0;
+        }
+    }
+    .likes{
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+  .buttons{
+    .like_button, .comment_button{
+      display: inline-block;
+      padding: 0.2em;
+      border: 0 none;
+      width: 50%;
+      background: white;
+      margin-top: 0.1em;
+    }
+    .like_button:hover, .comment_button:hover{
+      background: $gray-light;
+    }
+    .liked{
+      color: blue;
+    }
+  }
+    
+
+  .delete_button{
+    display: inline-block;
+  }
+
+  .time_diff{
+    display: block;
+  }
+}

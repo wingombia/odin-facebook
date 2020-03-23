@@ -1,40 +1,11 @@
 <% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
 $(document).on("turbolinks:load", () =>{
-    if (!(context.has_controller("posts") && context.has_action("index"))) return;
-    $(".like_button").on("click", () => {
-        let b = $(event.target);
-        let id = b.data('id');
-        let currentPost = $(`#post_${id}`);
-        
-        b.blur();
-
-        function ajaxRequest(node, type){
-            $.ajax({
-                url: `posts/${id}/likes`,
-                type: type,
-                data: {user_id: b.data("user-id"), id: id},
-                success: (data, status, xhr) => {
-                    node.toggleClass("liked");
-                    currentPost.find(".likes").html(data.data);
-                }
-            })
-        }
-
-        if (b.hasClass("liked")){
-            ajaxRequest(b, "delete");
-        } else {
-            ajaxRequest(b, "post");
-        }
-
-        
-    });
-
     $(".comment_button").on("click",() => {
-        
-
         let b = $(event.target);
         let id = b.data('id');
         let currentPost = $(`#post_${id}`);
+
+        b.blur();
 
         function ajaxRequest(node, is_form){
             console.log(node);
@@ -52,16 +23,10 @@ $(document).on("turbolinks:load", () =>{
         let c = currentPost.find(".comments");
         let a = currentPost.find(".add_comment_button");
         
-        console.log(cs);
         cs.toggleClass("js_visible");
-        console.log(b.data('comments'));
         if (cs.hasClass("js_visible")){
             a.html("<button>Add comment</button>");
-            if (b.data('comments')){
-                ajaxRequest(c, false);
-            } else {
-                c.html("No Comments!")
-            }
+            b.data('comments') ? ajaxRequest(c, false) : c.html("No Comments!")
             b.text("Hide Comments");
             cs.slideDown();
         } else {
@@ -70,9 +35,7 @@ $(document).on("turbolinks:load", () =>{
         }
 
         currentPost.find(".add_comment_button button").on("click",() => {
-            
             ajaxRequest(currentPost.find(".comment_form"), true);
-            
         });
     });
 });

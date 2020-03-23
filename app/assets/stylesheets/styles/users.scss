@@ -1,0 +1,49 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user {
+  #friend_status{
+    color: lightslategray;
+    display: inline-block;
+  }
+  .user_item{
+    width: 100%;
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    font-size: 0.9em;
+    //margin-left: 60px;
+  }
+  .view_post {
+    float: right;
+    font-size: 0.9em;
+  }
+}
+
+.friend_request, .user_item {
+    display: inline-block;
+}
+  
+ul.users{
+  list-style: none;
+}
+li.user{
+  @extend .item;
+  display: inline-block;
+  width: 25%;
+  margin-left: 1em;
+  div {
+    display: block;
+  }
+}
+
+.profile{
+  border-bottom: 1px solid #e8e8e8;
+  h1{
+    vertical-align: middle;
+  }
+  div{
+    display: inline-block;
+  }
+}
