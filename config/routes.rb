@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :posts do
-    resources :comments, except: [:index, :show, :new]
+    resources :comments, except: [:index, :show, :new] do
+      collection do
+        get 'render_comments'
+      end
+    end
     resource :likes, only: [:create, :destroy]
     collection do
       get 'show_comment_form'

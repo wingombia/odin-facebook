@@ -5,7 +5,7 @@ class PostsController < ApplicationController
         @post_new = current_user.posts.build
     end
     def show
-        @post = current_user.posts.find(params[:id])
+        @post = Post.find(params[:id])
         @comment = @post.comments.build
         @comments = @post.comments.paginate(page: params[:page])
         respond_to do |format|
@@ -30,16 +30,11 @@ class PostsController < ApplicationController
     end
 
     def show_comment_form
-
-        if params[:form] == "true"
-            render(json: {
-                data: render_to_string(partial: 'comments/comment_form', locals: {post: Post.find(params[:id])})
-            })
-        else
-            render(json: {
-                data: render_to_string(Post.find(params[:id]).comments)
-            })
-        end
+        @post = Post.find(params[:id])
+        @comments = @post.comments
+        render(json: {
+            data: @comments.blank? ? "No comments!" : render_to_string(@comments)
+        })
     end
     private
         def post_params

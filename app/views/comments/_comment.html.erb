@@ -3,11 +3,11 @@
     <span class="author"><%= link_to comment.user.username, comment.user %></span>
     <span class="delete_button">
         <% if comment.user == current_user%>
-        <span><%=  link_to "Delete", post_comment_path(comment.post,comment), class: "btn btn-primary", method: :delete, data: {confirm: "Are you sure?"}, remote: true%></span>
+            <%=  button_tag "Delete", data: {id: comment.id , post_id: comment.post.id}%>
         <% end %>
     </span>
 
-    <span class="avatar"><%= image_tag comment.user.picture.thumb.url if comment.user.picture? %></span>
+    <span class="avatar"><%= image_tag(comment.user.get_avatar_url(:thumb)) %></span>
     <span class="content"><%= comment.content %></span>
 
 

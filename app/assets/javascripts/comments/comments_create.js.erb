@@ -1,0 +1,23 @@
+<% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
+$(document).on("turbolinks:load", () => {
+    $(".comment_form button").on("click", (e) => {
+        let b = $(event.target);
+        let id = b.data('id');
+        let content = $(`#post_${id} textarea`).val();
+        $.ajax({
+            url: `posts/${id}/comments/`,
+            type: "post",
+            data: { 
+                post_id: id,  
+                comment: {
+                    content: content
+                }
+            },
+            dataType: "json",
+            success: (data, status, xhr) => {
+                console.log(data.flash);
+                $(".comments").html(data.comments);
+            }
+        })
+    })
+})

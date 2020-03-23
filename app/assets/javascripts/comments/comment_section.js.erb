@@ -7,15 +7,17 @@ $(document).on("turbolinks:load", () =>{
 
         b.blur();
 
-        function ajaxRequest(node, is_form){
+        function ajaxRequest(node){
             console.log(node);
             $.ajax({
                 url: "<%= show_comment_form_posts_path %>",
                 type: "get",
-                data: {id: id, form: is_form},
+                data: {id: id},
                 success: (data, status, xhr) => {
+                    
                     node.html(data.data);
                 }
+                
             });
         }
 
@@ -25,17 +27,12 @@ $(document).on("turbolinks:load", () =>{
         
         cs.toggleClass("js_visible");
         if (cs.hasClass("js_visible")){
-            a.html("<button>Add comment</button>");
-            b.data('comments') ? ajaxRequest(c, false) : c.html("No Comments!")
+            ajaxRequest(c);
             b.text("Hide Comments");
             cs.slideDown();
         } else {
             cs.slideUp();
             b.text("View Comments");
         }
-
-        currentPost.find(".add_comment_button button").on("click",() => {
-            ajaxRequest(currentPost.find(".comment_form"), true);
-        });
     });
 });

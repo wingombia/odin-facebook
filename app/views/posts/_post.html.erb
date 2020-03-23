@@ -1,5 +1,5 @@
 <% if !post.new_record? %>
-<li id="post_<%= post.id %>" class="item"">
+<li id="post_<%= post.id %>" class="item">
     <div><%= render partial: post.user, locals: {is_post: true, post: post} %></div>
     <span class="content"><%= post.content %></span>
     <section class="likes">
@@ -12,10 +12,12 @@
             <%= button_tag "Like", class: "like_button liked", data: {id: post.id} %><!--
     --><% end %><!--
     --><% if !single %><!--
-            --><%= button_tag 'View comments', class: "comment_button", data: {id: post.id, comments: post.comments.any?} %>
-            <div class="comments_section">
-                <div class="add_comment_button"></div>
-                <div class="comment_form"></div>
+            --><%= button_tag 'View comments', class: "comment_button", data: {id: post.id} %>
+            <div class="comments_section", data-id: <%= post.id %>>
+                <div class="comment_form">
+                    <%= render partial: 'comments/comment_form', locals: {post: post} %>
+                </div>
+                
                 <div class="comments"></div>
             </div>
         <% end%>

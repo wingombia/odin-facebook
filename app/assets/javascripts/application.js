@@ -17,5 +17,7 @@
 //= require turbolinks
 //= require init
 //= require cable
+//= require_tree ./functions
 //= require_tree ./comments
 //= require_tree ./posts
+//= require_tree ./users

@@ -1,0 +1,22 @@
+$(document).on("turbolinks:load", () =>{
+    $(".comments_section").on("click", ".delete_button button", () => {
+        if (confirm("Are your sure?")){
+            let b = $(event.target);
+            let id = b.data('id');
+            let post_id = b.data('post-id');
+            $.ajax({
+                url: `posts/${post_id}/comments/${id}`,
+                type: "delete",
+                data: { 
+                    post_id: post_id,
+                    id: id  
+                },
+                dataType: "json",
+                success: (data, status, xhr) => {
+                    console.log(data.flash);
+                    $(".comments").html(data.comments);
+                }
+            })
+        }
+    })
+})
