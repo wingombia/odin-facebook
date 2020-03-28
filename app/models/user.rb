@@ -48,6 +48,11 @@ class User < ApplicationRecord
     (pending_count > 0) ? pending_count : false
   end
 
+  def pending_count
+    count = pending_request?
+    count ? count : 0
+  end
+  
   def get_timeline
     Post.where(        user_id: friendships.where(pending: false).select(:friend_id))
         .or(Post.where(user_id: inverse_friendships.where(pending: false).select(:user_id)))

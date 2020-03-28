@@ -1,0 +1,8 @@
+<span class="notification_count">
+    <% if current_user.pending_request?%>
+        <%= current_user.pending_count %>
+    <% end %><!---->
+</span>
+<div class="notification_dialog">
+
+</div>

@@ -6,7 +6,7 @@
                 <li><%= link_to "Profile", user_path(current_user) %></li>
                 <li id="user_header"><%= render 'layouts/user_header' %></li>
                 
-               
+                <li class="notification"><%= render 'layouts/notification' %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 
             </ul>

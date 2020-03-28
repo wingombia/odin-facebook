@@ -1,5 +1,2 @@
-<% if current_user.pending_request?%>
-    <%= link_to "Users" + "(#{current_user.pending_request?})", users_path%>
-<% else %>
-    <%= link_to "Users", users_path %>
-<% end %>
+<%= link_to "Users", users_path %>
+

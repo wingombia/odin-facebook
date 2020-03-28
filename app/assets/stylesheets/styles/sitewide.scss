@@ -28,6 +28,27 @@ section {
   }
 }
 
+.notification {
+  width: 48px;
+  height: 50px;
+  background-position: center center;
+  background-image: image-url("bell.png");
+  background-repeat: no-repeat;
+  .notification_count{
+    float: right;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+    border-radius: 0.4em;
+    background-color: red;
+    padding: 0.1em;
+    text-align: center;
+  }
+  &:hover {
+    background-color: gray;
+  }
+}
+
 .item{
   background-color: white;
   border: 0.1em solid e8e8e8; 
